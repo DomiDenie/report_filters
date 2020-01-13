@@ -8,6 +8,11 @@
     "url": "https://github.com/DomiDenie/report_filters/issues",
     "email": "dominique.denie@telenet.be"
   },
+  "license": "MIT",
+  "author": {
+    "name": "Dominique Denie",
+    "email": "dominique.denie@telenet.be"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/DomiDenie/report_filters.git"
