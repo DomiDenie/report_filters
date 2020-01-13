@@ -1,7 +1,7 @@
 {
   "name": "ReportFilters",
   "version": "1.0",
-  "description": "Filters an interactive report based on value of a page item",
+  "description": "Filters an interactive report based on value of a page item. Filter operators are managed within the settings of the plugin.",
   "keywords": [ "dynamic action", "Interactive report"],
   "homepage": "https://github.com/DomiDenie/report_filters",
   "bugs": {
