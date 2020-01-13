@@ -1,0 +1,27 @@
+{
+  "name": "ReportFilters",
+  "version": "1.0",
+  "description": "Filters an interactive report based on value of a page item",
+  "keywords": [ "dynamic action", "Interactive report"],
+  "homepage": "https://github.com/DomiDenie/report_filters",
+  "bugs": {
+    "url": "https://github.com/DomiDenie/report_filters/issues",
+    "email": "dominique.denie@telenet.be"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DomiDenie/report_filters.git"
+  },
+  "oracle": {
+    "versions": ["18c"],
+    "apex": {
+      "versions":[ "19.1", "19.2"],
+      "plugin": {
+        "internalName": "DENIEDO.REPORT_FILTERS",
+        "type": "dynamic_action",
+        "demo": "https://rxzwovgxaqhm6at-dbdomi.adb.eu-frankfurt-1.oraclecloudapps.com/ords/f?p=100:2",
+        "previewImage": "https://raw.githubusercontent.com/DomiDenie/report_filters/master/preview.gif"
+      }
+    }
+  }
+}
