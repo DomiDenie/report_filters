@@ -20,10 +20,10 @@
   "oracle": {
     "versions": ["18.4.0.0"],
     "apex": {
-      "versions":[ "19.1", "19.2"],
+      "versions":[ "19.1.0", "19.2.0"],
       "plugin": {
         "internalName": "DENIEDO.REPORT_FILTERS",
-        "type": "dynamic_action",
+        "type": "dynamic action",
         "demo": "https://rxzwovgxaqhm6at-dbdomi.adb.eu-frankfurt-1.oraclecloudapps.com/ords/f?p=100:2",
         "previewImage": "https://raw.githubusercontent.com/DomiDenie/report_filters/master/preview.gif"
       }
