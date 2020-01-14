@@ -1,26 +1,26 @@
 {
   "name": "ReportFilters",
-  "version": "1.0",
+  "version": "1.0.1",
   "description": "Filters an interactive report based on value of a page item. Filter operators are managed within the settings of the plugin.",
   "keywords": [ "dynamic action", "Interactive report"],
   "homepage": "https://github.com/DomiDenie/report_filters",
   "bugs": {
     "url": "https://github.com/DomiDenie/report_filters/issues",
-    "email": "dominique.denie@telenet.be"
+    "email": "dominique.denie@iadvise.eu"
   },
   "license": "MIT",
   "author": {
     "name": "Dominique Denie",
-    "email": "dominique.denie@telenet.be"
+    "email": "dominique.denie@iadvise.eu"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/DomiDenie/report_filters.git"
   },
   "oracle": {
-    "versions": ["18.4.0.0"],
+    "versions": ["12.2.0.1","18.4.0.0"],
     "apex": {
-      "versions":[ "19.1.0", "19.2.0"],
+      "versions":[ "18.2.0","19.1.0", "19.2.0"],
       "plugin": {
         "internalName": "DENIEDO.REPORT_FILTERS",
         "type": "dynamic action",
