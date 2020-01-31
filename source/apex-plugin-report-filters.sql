@@ -207,7 +207,7 @@ wwv_flow_api.create_plugin(
 '    apex_javascript.add_library',
 '      ( p_name                  => ''filters.bundle#MIN#''',
 '      , p_directory             => p_plugin.file_prefix ',
-'      , p_check_to_add_minified => true );',
+'      , p_check_to_add_minified => false );',
 '',
 '    l_result.javascript_function := ''function() {',
 '        const config = '' || l_config || '';',
