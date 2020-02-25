@@ -6,17 +6,18 @@ whenever sqlerror exit sql.sqlcode rollback
 -- ORACLE Application Express (APEX) export file
 --
 -- You should run the script connected to SQL*Plus as the Oracle user
--- APEX_190100 or as the owner (parsing schema) of the application.
+-- APEX_190200 or as the owner (parsing schema) of the application.
 --
 -- NOTE: Calls to apex_application_install override the defaults below.
 --
 --------------------------------------------------------------------------------
 begin
 wwv_flow_api.import_begin (
- p_version_yyyy_mm_dd=>'2019.03.31'
-,p_release=>'19.1.0.00.15'
+ p_version_yyyy_mm_dd=>'2019.10.04'
+,p_release=>'19.2.0.00.18'
 ,p_default_workspace_id=>10102958384166532
 ,p_default_application_id=>100
+,p_default_id_offset=>0
 ,p_default_owner=>'PLUGINS'
 );
 end;
@@ -27,49 +28,47 @@ prompt APPLICATION 100 - Plugin repo
 -- Application Export:
 --   Application:     100
 --   Name:            Plugin repo
---   Date and Time:   12:12 Monday January 13, 2020
+--   Date and Time:   22:56 Tuesday February 25, 2020
 --   Exported By:     PLUGINS
 --   Flashback:       0
 --   Export Type:     Application Export
---   Version:         19.1.0.00.15
+--     Pages:                      4
+--       Items:                    5
+--       Processes:                5
+--       Regions:                  6
+--       Buttons:                  2
+--       Dynamic Actions:          1
+--     Shared Components:
+--       Logic:
+--       Navigation:
+--         Lists:                  2
+--         Breadcrumbs:            1
+--           Entries:              1
+--       Security:
+--         Authentication:         1
+--         Authorization:          1
+--       User Interface:
+--         Themes:                 1
+--         Templates:
+--           Page:                 9
+--           Region:              16
+--           Label:                7
+--           List:                12
+--           Popup LOV:            1
+--           Calendar:             1
+--           Breadcrumb:           1
+--           Button:               3
+--           Report:              10
+--         LOVs:                   1
+--         Shortcuts:              1
+--         Plug-ins:               2
+--       Globalization:
+--       Reports:
+--       E-Mail:
+--     Supporting Objects:  Included
+--   Version:         19.2.0.00.18
 --   Instance ID:     9502752269487287
 --
-
--- Application Statistics:
---   Pages:                      4
---     Items:                    5
---     Processes:                5
---     Regions:                  6
---     Buttons:                  2
---     Dynamic Actions:          1
---   Shared Components:
---     Logic:
---     Navigation:
---       Lists:                  2
---       Breadcrumbs:            1
---         Entries:              1
---     Security:
---       Authentication:         1
---       Authorization:          1
---     User Interface:
---       Themes:                 1
---       Templates:
---         Page:                 9
---         Region:              16
---         Label:                7
---         List:                12
---         Popup LOV:            1
---         Calendar:             1
---         Breadcrumb:           1
---         Button:               3
---         Report:              10
---       LOVs:                   1
---       Shortcuts:              1
---       Plug-ins:               2
---     Globalization:
---     Reports:
---     E-Mail:
---   Supporting Objects:  Included
 
 prompt --application/delete_application
 begin
@@ -97,7 +96,8 @@ wwv_flow_api.create_flow(
 ,p_authentication=>'PLUGIN'
 ,p_authentication_id=>wwv_flow_api.id(10120359639662643)
 ,p_application_tab_set=>1
-,p_logo_image=>'TEXT:Plugin repo'
+,p_logo_type=>'T'
+,p_logo_text=>'Plugin repo'
 ,p_app_builder_icon_name=>'app-icon.svg'
 ,p_proxy_server=>nvl(wwv_flow_application_install.get_proxy,'')
 ,p_no_proxy_domains=>nvl(wwv_flow_application_install.get_no_proxy_domains,'')
@@ -112,7 +112,7 @@ wwv_flow_api.create_flow(
 ,p_substitution_string_01=>'APP_NAME'
 ,p_substitution_value_01=>'Plugin repo'
 ,p_last_updated_by=>'PLUGINS'
-,p_last_upd_yyyymmddhh24miss=>'20200113121237'
+,p_last_upd_yyyymmddhh24miss=>'20200225225134'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
 ,p_files_version=>31
 ,p_ui_type_name => null
@@ -254,11 +254,6 @@ wwv_flow_api.create_plugin_setting(
 ,p_attribute_01=>'Y'
 );
 wwv_flow_api.create_plugin_setting(
- p_id=>wwv_flow_api.id(10119736565662640)
-,p_plugin_type=>'REGION TYPE'
-,p_plugin=>'NATIVE_IG'
-);
-wwv_flow_api.create_plugin_setting(
  p_id=>wwv_flow_api.id(10120022448662641)
 ,p_plugin_type=>'ITEM TYPE'
 ,p_plugin=>'NATIVE_YES_NO'
@@ -316,6 +311,7 @@ wwv_flow_api.create_list_of_values(
  p_id=>wwv_flow_api.id(10254607601662920)
 ,p_lov_name=>'LOGIN_REMEMBER_USERNAME'
 ,p_lov_query=>'.'||wwv_flow_api.id(10254607601662920)||'.'
+,p_location=>'STATIC'
 );
 wwv_flow_api.create_static_lov_data(
  p_id=>wwv_flow_api.id(10255069096662923)
@@ -532,7 +528,6 @@ wwv_flow_api.create_template(
 ,p_dialog_js_cancel_code=>'apex.navigation.dialog.cancel(#IS_MODAL#);'
 ,p_dialog_browser_frame=>'MODAL'
 ,p_reference_id=>2525196570560608698
-,p_translate_this_template=>'N'
 );
 wwv_flow_api.create_page_tmpl_display_point(
  p_id=>wwv_flow_api.id(10121769360662670)
@@ -793,7 +788,6 @@ wwv_flow_api.create_template(
 ,p_dialog_js_cancel_code=>'apex.navigation.dialog.cancel(#IS_MODAL#);'
 ,p_dialog_browser_frame=>'MODAL'
 ,p_reference_id=>2525203692562657055
-,p_translate_this_template=>'N'
 );
 wwv_flow_api.create_page_tmpl_display_point(
  p_id=>wwv_flow_api.id(10124517049662686)
@@ -1004,7 +998,6 @@ wwv_flow_api.create_template(
 ,p_dialog_js_cancel_code=>'apex.navigation.dialog.cancel(#IS_MODAL#);'
 ,p_dialog_browser_frame=>'MODAL'
 ,p_reference_id=>2099711150063350616
-,p_translate_this_template=>'N'
 );
 wwv_flow_api.create_page_tmpl_display_point(
  p_id=>wwv_flow_api.id(10127616027662689)
@@ -1217,7 +1210,6 @@ wwv_flow_api.create_template(
 ,p_dialog_js_cancel_code=>'apex.navigation.dialog.cancel(#IS_MODAL#);'
 ,p_dialog_browser_frame=>'MODAL'
 ,p_reference_id=>1996914646461572319
-,p_translate_this_template=>'N'
 );
 wwv_flow_api.create_page_tmpl_display_point(
  p_id=>wwv_flow_api.id(10128473056662690)
@@ -1486,7 +1478,6 @@ wwv_flow_api.create_template(
 ,p_dialog_js_cancel_code=>'apex.navigation.dialog.cancel(#IS_MODAL#);'
 ,p_dialog_browser_frame=>'MODAL'
 ,p_reference_id=>2525200116240651575
-,p_translate_this_template=>'N'
 );
 wwv_flow_api.create_page_tmpl_display_point(
  p_id=>wwv_flow_api.id(10131546452662692)
@@ -1693,7 +1684,6 @@ wwv_flow_api.create_template(
 ,p_dialog_max_width=>'960'
 ,p_dialog_browser_frame=>'MODAL'
 ,p_reference_id=>2120348229686426515
-,p_translate_this_template=>'N'
 );
 wwv_flow_api.create_page_tmpl_display_point(
  p_id=>wwv_flow_api.id(10134332386662695)
@@ -1857,7 +1847,6 @@ wwv_flow_api.create_template(
 ,p_dialog_max_width=>'960'
 ,p_dialog_browser_frame=>'MODAL'
 ,p_reference_id=>2098960803539086924
-,p_translate_this_template=>'N'
 );
 wwv_flow_api.create_page_tmpl_display_point(
  p_id=>wwv_flow_api.id(10135891100662696)
@@ -2066,7 +2055,6 @@ wwv_flow_api.create_template(
 ,p_dialog_js_cancel_code=>'apex.navigation.dialog.cancel(#IS_MODAL#);'
 ,p_dialog_browser_frame=>'MODAL'
 ,p_reference_id=>2977628563533209425
-,p_translate_this_template=>'N'
 );
 wwv_flow_api.create_page_tmpl_display_point(
  p_id=>wwv_flow_api.id(10137334939662698)
@@ -2313,7 +2301,6 @@ wwv_flow_api.create_template(
 ,p_dialog_js_cancel_code=>'apex.navigation.dialog.cancel(#IS_MODAL#);'
 ,p_dialog_browser_frame=>'MODAL'
 ,p_reference_id=>4070909157481059304
-,p_translate_this_template=>'N'
 );
 wwv_flow_api.create_page_tmpl_display_point(
  p_id=>wwv_flow_api.id(10139861153662699)
@@ -9983,17 +9970,17 @@ wwv_flow_api.create_template_option(
 );
 end;
 /
-prompt --application/shared_components/logic/build_options
-begin
-null;
-end;
-/
 prompt --application/shared_components/globalization/language
 begin
 null;
 end;
 /
 prompt --application/shared_components/globalization/translations
+begin
+null;
+end;
+/
+prompt --application/shared_components/logic/build_options
 begin
 null;
 end;
@@ -10046,24 +10033,33 @@ wwv_flow_api.create_plugin(
 ,p_standard_attributes=>'REGION:REQUIRED:ONLOAD'
 ,p_substitute_attributes=>true
 ,p_subscribe_plugin_settings=>true
-,p_version_identifier=>'v1.0.0'
+,p_version_identifier=>'v2.0.0'
 ,p_about_url=>'https://rxzwovgxaqhm6at-dbdomi.adb.eu-frankfurt-1.oraclecloudapps.com/ords/f?p=100:2'
 ,p_files_version=>15
 );
 wwv_flow_api.create_plugin_attribute(
- p_id=>wwv_flow_api.id(11111894868023479)
+ p_id=>wwv_flow_api.id(11911532230458607)
 ,p_plugin_id=>wwv_flow_api.id(11105038331496505)
 ,p_attribute_scope=>'COMPONENT'
 ,p_attribute_sequence=>1
 ,p_display_sequence=>10
-,p_prompt=>'filter items'
-,p_attribute_type=>'TEXT'
-,p_is_required=>false
+,p_prompt=>'Filter items'
+,p_attribute_type=>'TEXTAREA'
+,p_is_required=>true
 ,p_is_translatable=>false
 ,p_help_text=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'The following format should be maintained:<br/>',
+'The settings for using this plugin should be entered following the example below:<br/>',
 '<br/>',
-'item1:operator1:column1;item2:operator2:column2 ',
+'[',
+'  { "operator": "EQ",',
+'    "item": "P1000_ITEM1",',
+'    "column": "COLUMN1"',
+'  },',
+'  { "operator": "LIKE",',
+'    "item": "P1000_ITEM2",',
+'    "column": "COLUMN2"',
+'  }',
+']',
 '<br/>',
 'The following operators can be used',
 '<br/>',
@@ -10519,41 +10515,22 @@ wwv_flow_api.create_plugin_file(
 );
 end;
 /
-prompt --application/shared_components/plugins/dynamic_action/deniedo_report_filters42533
+prompt --application/shared_components/plugins/dynamic_action/deniedo_report_filters_code
 begin
 wwv_flow_api.create_plugin(
  p_id=>wwv_flow_api.id(11318940068656509)
 ,p_plugin_type=>'DYNAMIC ACTION'
-,p_name=>'DENIEDO.REPORT_FILTERS42533'
+,p_name=>'DENIEDO.REPORT_FILTERS_CODE'
 ,p_display_name=>'report_filters_code'
 ,p_category=>'COMPONENT'
 ,p_supported_ui_types=>'DESKTOP'
-,p_image_prefix => nvl(wwv_flow_application_install.get_static_plugin_file_prefix('DYNAMIC ACTION','DENIEDO.REPORT_FILTERS42533'),'')
+,p_image_prefix => nvl(wwv_flow_application_install.get_static_plugin_file_prefix('DYNAMIC ACTION','DENIEDO.REPORT_FILTERS_CODE'),'')
 ,p_plsql_code=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'  /**',
+' /**',
 '   * @private',
 '   * Set report filters',
 '   *',
 '   * @param p_config : configuration JSON of report filters',
-'   *',
-'   * @example',
-'   *  declare',
-'   *    l_json clob := ''{ static_id : "report_filters"',
-'   *                    , app_id : 118',
-'   *                    , page_id : 1000',
-'   *                    , settings : [{ column : "column1"',
-'   *                                  , value : "Value 1"',
-'   *                                  , operator: "EQ"',
-'   *                                },',
-'   *                                { column : "column2"',
-'   *                                , value : "Value 2"',
-'   *                                , operator: "LT"',
-'   *                                }]',
-'   *                    }'';',
-'   *  begin',
-'   *    pck$apx_utils.set_report_filters',
-'   *      ( p_config => l_json );',
-'   *  end;',
 '  **/',
 '  procedure set_report_filters ',
 '    ( p_config in clob )',
@@ -10623,10 +10600,10 @@ wwv_flow_api.create_plugin(
 '   * @private',
 '   * Get the affected region that is indicated in the plugin',
 '   *',
-'   * @param p_action_id ',
-'   * @param p_return_type',
+'   * @param p_action_id :',
+'   * @param p_return_type :',
 '   *',
-'   * @return',
+'   * @return The affected region from the plugin',
 '  **/',
 '  function get_affected_region',
 '    ( p_action_id in apex_application_page_da_acts.action_id%type ',
@@ -10640,9 +10617,9 @@ wwv_flow_api.create_plugin(
 '         , apda.affected_region_id',
 '      into l_static_id',
 '         , l_region_id',
-'      from apex_application_page_da_acts apda',
-'      join apex_application_page_regions apre on ( apda.affected_region_id = apre.region_id )',
-'     where apda.action_id = p_action_id;',
+'      from apex_application_page_da_acts apda ',
+'      join apex_application_page_regions apre on ( apda.affected_region_id = apre.region_id)',
+'     where action_id = p_action_id;',
 '  ',
 '    case p_return_type',
 '      when ''REGION'' then',
@@ -10659,8 +10636,6 @@ wwv_flow_api.create_plugin(
 '  is',
 '    l_result       apex_plugin.t_dynamic_action_render_result; ',
 '    l_filter_items varchar2(32767) := p_dynamic_action.attribute_01;',
-'    l_filter_list  apex_t_varchar2;',
-'    l_list         apex_t_varchar2;',
 '    l_config       clob;',
 '  begin',
 '    -- Debug',
@@ -10679,24 +10654,6 @@ wwv_flow_api.create_plugin(
 '    apex_json.write(''ajax_identifier'', apex_plugin.get_ajax_identifier, true);',
 '    apex_json.write(''app_id'', v(''APP_ID''), true );',
 '    apex_json.write(''page_id'', v(''APP_PAGE_ID''), true );',
-'',
-'    apex_json.open_array(''settings'');',
-'    l_filter_list := apex_string.split',
-'      ( p_str => l_filter_items',
-'      , p_sep => '';'');',
-'',
-'    for i in 1..l_filter_list.count loop',
-'      l_list := apex_string.split',
-'      ( p_str => l_filter_list(i)',
-'      , p_sep => '':'' );',
-'',
-'      apex_json.open_object;',
-'      apex_json.write(''item'', l_list(1), true );',
-'      apex_json.write(''operator'', l_list(2), true );',
-'      apex_json.write(''column'', l_list(3), true );',
-'      apex_json.close_object;',
-'',
-'    end loop;',
 '    ',
 '    apex_json.close_all;',
 '',
@@ -10710,6 +10667,7 @@ wwv_flow_api.create_plugin(
 '',
 '    l_result.javascript_function := ''function() {',
 '        const config = '' || l_config || '';',
+'        config.settings = '' || l_filter_items || '';',
 '        rpt_filters.applyFilter(config);',
 '        }'';',
 '    return l_result;',
@@ -10747,9 +10705,20 @@ wwv_flow_api.create_plugin_attribute(
 ,p_is_required=>false
 ,p_is_translatable=>false
 ,p_help_text=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'The following format should be maintained:<br/>',
+'The settings for this plugin should be entered following the example below:<br/>',
 '<br/>',
-'item1:operator1:column1;item2:operator2:column2 ',
+'[',
+'  { ',
+'    "operator": "LIKE",',
+'    "item": "P1000_ITEM_1",',
+'    "column": "COLUMN1"',
+'  },',
+'  {  ',
+'    "operator": "EQ",',
+'    "item": "P1000_ITEM_2",',
+'    "column": "COLUMN2"',
+'  }',
+']',
 '<br/>',
 'The following operators can be used',
 '<br/>',
@@ -11290,8 +11259,9 @@ wwv_flow_api.create_page(
 ,p_step_title=>'report filters'
 ,p_autocomplete_on_off=>'OFF'
 ,p_page_template_options=>'#DEFAULT#'
+,p_page_is_public_y_n=>'Y'
 ,p_last_updated_by=>'PLUGINS'
-,p_last_upd_yyyymmddhh24miss=>'20200113121237'
+,p_last_upd_yyyymmddhh24miss=>'20200225224517'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(10264372995677201)
@@ -11581,10 +11551,22 @@ wwv_flow_api.create_page_da_action(
 ,p_event_result=>'TRUE'
 ,p_action_sequence=>10
 ,p_execute_on_page_init=>'Y'
-,p_action=>'PLUGIN_DENIEDO.REPORT_FILTERS42533'
+,p_action=>'PLUGIN_DENIEDO.REPORT_FILTERS'
 ,p_affected_elements_type=>'REGION'
 ,p_affected_region_id=>wwv_flow_api.id(10264484816677202)
-,p_attribute_01=>'P2_FIRST_NAME:LIKE:FIRST_NAME'
+,p_attribute_01=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'[',
+'  { ',
+'    "operator":"LIKE",',
+'    "item": "P2_FIRST_NAME",',
+'    "column": "FIRST_NAME"',
+'  },',
+'  {',
+'    "operator": "EQ",',
+'    "item": "P2_LAST_NAME",',
+'    "column": "LAST_NAME"',
+'  }',
+']'))
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(10266735271677225)
@@ -11654,7 +11636,6 @@ wwv_flow_api.create_page_button(
 ,p_button_image_alt=>'Sign In'
 ,p_button_position=>'REGION_TEMPLATE_NEXT'
 ,p_button_alignment=>'LEFT'
-,p_grid_new_grid=>false
 ,p_grid_new_row=>'Y'
 ,p_grid_new_column=>'Y'
 );
