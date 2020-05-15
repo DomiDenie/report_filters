@@ -28,7 +28,7 @@ prompt APPLICATION 100 - Plugin repo
 -- Application Export:
 --   Application:     100
 --   Name:            Plugin repo
---   Date and Time:   00:28 Wednesday February 26, 2020
+--   Date and Time:   08:34 Friday May 15, 2020
 --   Exported By:     PLUGINS
 --   Flashback:       0
 --   Export Type:     Component Export
@@ -183,6 +183,7 @@ wwv_flow_api.create_plugin(
 '      ( p_string => p_dynamic_action.attribute_02);',
 '    l_enable_enter boolean := convert_to_boolean',
 '      ( p_string => p_dynamic_action.attribute_03 );',
+'    l_filtered_ind varchar2(32767 char ) := p_dynamic_action.attribute_05;',
 '    l_config       clob;',
 '    l_onload_code  clob;',
 '  begin',
@@ -202,6 +203,10 @@ wwv_flow_api.create_plugin(
 '    apex_json.write(''ajax_identifier'', apex_plugin.get_ajax_identifier, true);',
 '    apex_json.write(''app_id'', v(''APP_ID''), true );',
 '    apex_json.write(''page_id'', v(''APP_PAGE_ID''), true );',
+'    apex_json.write(''filtered_ind'', l_filtered_ind, true);',
+'    apex_json.write(''filter_btn'', p_dynamic_action.attribute_06 );',
+'    apex_json.write(''clear_btn'', p_dynamic_action.attribute_07, true );',
+'    apex_json.write(''enable_enter'', l_enable_enter, true );',
 '    apex_json.write(''storeLS'', l_store_in_LS, true );',
 '    ',
 '    apex_json.close_all;',
@@ -213,25 +218,11 @@ wwv_flow_api.create_plugin(
 '      ( p_name                  => ''filters.bundle#MIN#''',
 '      , p_directory             => p_plugin.file_prefix ',
 '      , p_check_to_add_minified => false );',
-'',
-'    if l_store_in_LS then',
-'      l_onload_code := ''rpt_filters.applyFilter( rpt_filters.getFromLocal(), true);'';',
-'    end if;',
-'',
-'    if l_enable_enter then',
-'      l_onload_code := l_onload_code || ''',
-'        const config = '' || l_config || '';',
-'        config.settings = '' || l_filter_items || '';',
-'        rpt_filters.bindEnter(config);',
-'    '';',
-'    end if;',
-'',
-'    apex_javascript.add_onload_code( l_onload_code );',
 '      ',
 '    l_result.javascript_function := ''function() {',
 '        const config = '' || l_config || '';',
 '        config.settings = '' || l_filter_items || '';',
-'        rpt_filters.applyFilter(config);',
+'        rpt_filters.init(config);',
 '        }'';',
 '    return l_result;',
 '  end render_filters;',
@@ -320,6 +311,57 @@ wwv_flow_api.create_plugin_attribute(
 ,p_default_value=>'Y'
 ,p_is_translatable=>false
 ,p_help_text=>'When this is enabled you will be able to press ENTER and launch the filter'
+);
+wwv_flow_api.create_plugin_attribute(
+ p_id=>wwv_flow_api.id(24016979099772691)
+,p_plugin_id=>wwv_flow_api.id(11318940068656509)
+,p_attribute_scope=>'COMPONENT'
+,p_attribute_sequence=>4
+,p_display_sequence=>40
+,p_prompt=>'Only results when filtered'
+,p_attribute_type=>'CHECKBOX'
+,p_is_required=>false
+,p_default_value=>'N'
+,p_is_translatable=>false
+);
+wwv_flow_api.create_plugin_attribute(
+ p_id=>wwv_flow_api.id(24017249309769901)
+,p_plugin_id=>wwv_flow_api.id(11318940068656509)
+,p_attribute_scope=>'COMPONENT'
+,p_attribute_sequence=>5
+,p_display_sequence=>50
+,p_prompt=>'Filter indicator item'
+,p_attribute_type=>'PAGE ITEM'
+,p_is_required=>true
+,p_is_translatable=>false
+,p_depending_on_attribute_id=>wwv_flow_api.id(24016979099772691)
+,p_depending_on_has_to_exist=>true
+,p_depending_on_condition_type=>'EQUALS'
+,p_depending_on_expression=>'Y'
+);
+wwv_flow_api.create_plugin_attribute(
+ p_id=>wwv_flow_api.id(24017510028763826)
+,p_plugin_id=>wwv_flow_api.id(11318940068656509)
+,p_attribute_scope=>'COMPONENT'
+,p_attribute_sequence=>6
+,p_display_sequence=>60
+,p_prompt=>'Filter button id'
+,p_attribute_type=>'TEXT'
+,p_is_required=>true
+,p_is_translatable=>false
+,p_help_text=>'fill in here the static id of the button you wish to use to filter'
+);
+wwv_flow_api.create_plugin_attribute(
+ p_id=>wwv_flow_api.id(24017813569760436)
+,p_plugin_id=>wwv_flow_api.id(11318940068656509)
+,p_attribute_scope=>'COMPONENT'
+,p_attribute_sequence=>7
+,p_display_sequence=>70
+,p_prompt=>'Clear button id'
+,p_attribute_type=>'TEXT'
+,p_is_required=>false
+,p_is_translatable=>false
+,p_help_text=>'Fill in here the static id of the button you wish to use for clearing the filter'
 );
 end;
 /
